@@ -1,0 +1,70 @@
+graph switches {
+
+  label="Sample\n(c)";
+  fontname="consolas";
+  fontsize=9;
+
+  node [
+    shape=box,
+    fontname="consolas",
+    fontsize=7,
+    style=filled,
+    color="#d3edea"
+  ];
+  splines="compound"
+
+  ctx_app [ label="Citrix XenApp" URL="https://client.sample.com/Citrix/XenApp" target="_blank" shape=none image="graph/server_multiple.png" labelloc=b color="#ffffff"];
+  db [ label="Oracle 11g" shape=none image="graph/server_database.png" labelloc=b color="#ffffff"];
+  rfw [ label="Reporting" URL="https://report.sample.com/status" target="_blank" shape=none image="graph/server_web.png" labelloc=b color="#ffffff" tooltip="C138MEGOTPWEB.sample.local&#10;C588YRTOTPWEB.sample.local&#10;C736SCPOTPWEB.sample.local&#10;C917AZEOTPWEB.sample.local"];
+  ad [ label="AD" shape=none image="graph/server_directory.png" labelloc=b color="#ffffff" tooltip="C252QHK.sample.local&#10;C383VBH.sample.local&#10;C252QHK.sample.local"];
+  ga [ label="GA" URL="https://wizard.sample.com/heap.jsp" target="_blank" shape=none image="graph/server_web.png" labelloc=b color="#ffffff"];
+  bknweb [ label="Backend Web" shape=none image="graph/server_web.png" labelloc=b color="#ffffff"  tooltip="C204PGHOTPWEB.sample.local&#10;C244JGNOTPWEB.sample.local"];
+#  ctx_ds [ label="Citrix Datastore" shape=none image="graph/server_database.png" labelloc=b color="#ffffff"];
+#  ctx_lic [ label="Citrix License" shape=none image="graph/server.png" labelloc=b color="#ffffff"];
+  ctx_web [ label="Citrix Web Interface" shape=none image="graph/server_web.png" labelloc=b color="#ffffff"];
+
+
+  netsclr [ label= "Citrix Netscaler",
+           shape=none ,
+           image="graph/server_web_secure.png" ,
+           labelloc=b ,
+           color="#ffffff" ];
+
+#  lb [ label= "BigIP F5",
+#           shape=none ,
+#           image="graph/network_device.png" ,
+#           labelloc=b ,
+#          color="#ffffff" ];
+
+  inet [ label="Reporting" URL="https://analysis.sample.com/reporting/Reports?op=ping" target="_blank" shape=none image="graph/server_web.png" labelloc=b color="#ffffff"];
+
+  cifs [ label="CIFS" shape=none image="graph/drive_network.png" labelloc=b color="#ffffff" ];
+  nfs [ label="NFS" shape=none image="graph/drive_network.png" labelloc=b color="#ffffff" ];
+  nfs_inet [ label="NFS" shape=none image="graph/drive_network.png" labelloc=b color="#ffffff" ];
+
+  cloud [ label="Platform" shape=none, image="graph/cloud.png" labelloc=b color="#ffffff"]
+
+  cloud -- netsclr [color="#00bbff"];
+  cloud -- ga [color="#00bbff"];
+  netsclr -- ctx_web [color="#00bbff"];
+  ctx_web -- ctx_app [color="#00bbff"];
+  ctx_app -- db [color="#ffbb00"];
+  ctx_app -- rfw [color="#ffbb00"];
+  ctx_app -- inet [color="#bbff00"];
+  ctx_app -- ad [color="#ffbb00"];
+#  ctx_app -- ctx_ds [color="#ffbb00"];
+#  ctx_app -- ctx_lic [color="#ffbb00"];
+  ctx_app -- cifs [color="#ffbb00"];
+  db -- nfs [color="#ffbb00"];
+  rfw -- cifs [color="#ffbb00"];
+  rfw -- db [color="#ffbb00"];
+  inet -- nfs_inet [color="#ffbb00"];
+  inet -- db [color="#ffbb00"];
+  ga -- db [color="#ffbb00"];
+  ga -- rfw [color="#ffbb00"];
+  ga -- inet [color="#ffbb00"];
+  bknweb -- cifs [color="#ffbb00"];
+  bknweb -- db [color="#ffbb00"];
+  ctx_app -- bknweb [color="#ffbb00"];
+  rfw -- bknweb [color="#ffbb00"];
+}
